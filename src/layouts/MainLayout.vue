@@ -36,7 +36,62 @@
     </q-drawer>
 
     <q-drawer show-if-above v-model="right" side="right" bordered>
-      <!-- drawer content -->
+      <q-input
+        class="q-pa-md"
+        rounded
+        outlined
+        dense
+        v-model="searchTerm"
+        placeholder="Search Qwitter"
+      >
+        <template #prepend>
+          <q-icon name="search" />
+        </template>
+      </q-input>
+
+      <q-list padding separator>
+        <q-item class="q-pa-md">
+          <q-item-section>
+            <q-item-label class="text-grey" overline>Education</q-item-label>
+            <q-item-label class="text-weight-bold">Single line item</q-item-label>
+            <q-item-label caption>
+              Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.
+            </q-item-label>
+          </q-item-section>
+
+          <q-item-section side top>
+            <q-item-label caption>5 min ago</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item class="q-pa-md">
+          <q-item-section>
+            <q-item-label class="text-grey" overline>Education</q-item-label>
+            <q-item-label class="text-weight-bold">Single line item</q-item-label>
+            <q-item-label caption>
+              Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.
+            </q-item-label>
+          </q-item-section>
+
+          <q-item-section side top>
+            <q-item-label caption>5 min ago</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item class="q-pa-md">
+          <q-item-section>
+            <q-item-label class="text-grey" overline>Education</q-item-label>
+            <q-item-label class="text-weight-bold">Single line item</q-item-label>
+            <q-item-label caption>
+              Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.
+            </q-item-label>
+          </q-item-section>
+
+          <q-item-section side top>
+            <q-item-label caption>5 min ago</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
     </q-drawer>
 
     <q-page-container>
@@ -64,6 +119,7 @@ export default {
           label: 'About',
         },
       ],
+      searchTerm: '',
     };
   },
 };
