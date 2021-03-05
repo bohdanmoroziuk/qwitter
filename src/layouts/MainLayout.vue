@@ -1,18 +1,14 @@
 <template>
   <q-layout view="lHr lpR fFf">
 
-    <q-header bordered class="bg-primary text-white">
+    <q-header bordered class="bg-white text-black">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
 
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
-          </q-avatar>
-          Title
+        <q-toolbar-title class="text-weight-bold">
+          Qwitter
         </q-toolbar-title>
 
-        <q-btn dense flat round icon="menu" @click="right = !right" />
       </q-toolbar>
     </q-header>
 
