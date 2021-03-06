@@ -1,7 +1,7 @@
 <template>
   <form
     class="new-tweet-form"
-    @submit.prevent="$emit('submit', text)"
+    @submit.prevent="handleSubmit"
   >
     <div class="row q-col-gutter-md items-end">
       <div class="col">
@@ -45,6 +45,12 @@ export default {
     return {
       text: '',
     };
+  },
+  methods: {
+    handleSubmit() {
+      this.$emit('submit', this.text);
+      this.text = '';
+    },
   },
 };
 </script>
