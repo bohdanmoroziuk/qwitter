@@ -1,19 +1,21 @@
 <template>
-  <q-page>
-    <div class="q-py-lg q-px-md">
-      <new-tweet-form @submit="addTweet" />
-    </div>
+  <q-page class="relative-position">
+    <q-scroll-area class="absolute fullscreen">
+      <div class="q-py-lg q-px-md">
+        <new-tweet-form @submit="addTweet" />
+      </div>
 
-    <q-separator
-      class="divider"
-      size="10px"
-      color="grey-2"
-    />
+      <q-separator
+        class="divider"
+        size="10px"
+        color="grey-2"
+      />
 
-    <tweet-list
-      :tweets="tweets"
-      @delete-tweet="deleteTweet"
-    />
+      <tweet-list
+        :tweets="tweets"
+        @delete-tweet="deleteTweet"
+      />
+    </q-scroll-area>
   </q-page>
 </template>
 
