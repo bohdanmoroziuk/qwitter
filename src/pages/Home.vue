@@ -9,6 +9,8 @@
       size="10px"
       color="grey-2"
     />
+
+    <tweet-list />
   </q-page>
 </template>
 
@@ -17,6 +19,7 @@ export default {
   name: 'Home',
 
   components: {
+    TweetList: () => import('components/TweetList.vue'),
     NewTweetForm: () => import('components/NewTweetForm.vue'),
   },
 };
