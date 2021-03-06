@@ -12,7 +12,7 @@
           {{ tweet.author.fullname }}
         </span>
         <span class="text-grey-7">
-          {{ tweet.author.nickname }}
+          {{ tweet.author.nickname }} <br class="lt-sm" /> &bull; {{ tweet.createdAt | fromNow }}
         </span>
       </q-item-label>
       <q-item-label class="text-body1">
@@ -58,10 +58,6 @@
           />
         </div>
       </div>
-    </q-item-section>
-
-    <q-item-section side top>
-      {{ tweet.createdAt | fromNow }}
     </q-item-section>
   </q-item>
 </template>
