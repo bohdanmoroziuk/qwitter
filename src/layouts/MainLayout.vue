@@ -6,7 +6,7 @@
         <q-btn dense flat round icon="menu" @click="left = !left" />
 
         <q-toolbar-title class="text-weight-bold">
-          <span class="gt-sm">Qwitter</span>
+          <span class="gt-sm">{{ $route.name }}</span>
           <q-icon
             class="q-pa-md lt-md header-icon"
             name="fas fa-dove"
@@ -28,6 +28,7 @@
           clickable
           v-ripple
           :to="link.to"
+          :exact="link.exact"
         >
           <q-item-section avatar>
             <q-icon :name="link.icon" size="md" />
@@ -118,6 +119,7 @@ export default {
           to: '/',
           icon: 'home',
           label: 'Home',
+          exact: true,
         },
         {
           to: '/about',
