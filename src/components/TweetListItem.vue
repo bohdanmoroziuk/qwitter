@@ -77,3 +77,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.tweet-list-item:not(:first-of-type) {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+</style>

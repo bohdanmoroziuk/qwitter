@@ -1,11 +1,17 @@
 <template>
   <q-list class="tweet-list" separator>
-    <tweet-list-item
-      v-for="tweet of tweets"
-      :tweet="tweet"
-      :key="tweet.id"
-      @delete="$emit('delete-tweet', tweet.id)"
-    />
+    <transition-group
+      appear
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <tweet-list-item
+        v-for="tweet of tweets"
+        :key="tweet.id"
+        :tweet="tweet"
+        @delete="$emit('delete-tweet', tweet.id)"
+      />
+    </transition-group>
   </q-list>
 </template>
 
