@@ -1,5 +1,8 @@
 <template>
-  <form class="new-tweet-form">
+  <form
+    class="new-tweet-form"
+    @submit.prevent="$emit('submit', text)"
+  >
     <div class="row q-col-gutter-md items-end">
       <div class="col">
         <q-input
@@ -28,6 +31,7 @@
           color="primary"
           label="Qweet"
           no-caps
+          type="submit"
         />
       </div>
     </div>
