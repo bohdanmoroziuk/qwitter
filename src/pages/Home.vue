@@ -10,7 +10,10 @@
       color="grey-2"
     />
 
-    <tweet-list :tweets="tweets" />
+    <tweet-list
+      :tweets="tweets"
+      @delete-tweet="deleteTweet"
+    />
   </q-page>
 </template>
 
@@ -37,6 +40,9 @@ export default {
       };
 
       this.tweets = [newTweet, ...this.tweets];
+    },
+    deleteTweet(id) {
+      this.tweets = this.tweets.filter((tweet) => tweet.id !== id);
     },
   },
   components: {

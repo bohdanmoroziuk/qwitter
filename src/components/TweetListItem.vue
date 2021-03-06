@@ -54,6 +54,7 @@
             size="sm"
             flat
             round
+            @click="$emit('delete')"
           />
         </div>
       </div>
