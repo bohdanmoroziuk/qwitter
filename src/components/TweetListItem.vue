@@ -9,10 +9,10 @@
     <q-item-section>
       <q-item-label class="text-subtitle1">
         <span class="text-weight-bold q-mr-sm">
-          {{ tweet.author.fullname }}
+          {{ tweet.fullname }}
         </span>
         <span class="text-grey-7">
-          {{ tweet.author.nickname }} <br class="lt-sm" /> &bull; {{ tweet.createdAt | fromNow }}
+          {{ tweet.nickname }} <br class="lt-sm" /> &bull; {{ tweet.createdAt | fromNow }}
         </span>
       </q-item-label>
       <q-item-label class="text-body1">

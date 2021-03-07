@@ -22,6 +22,8 @@
 <script>
 import { nanoid } from 'nanoid';
 
+import database from 'boot/firebase';
+
 export default {
   name: 'Home',
   data() {
@@ -30,6 +32,23 @@ export default {
     };
   },
   methods: {
+    handleTweets() {
+      database.collection('qweets')
+        .orderBy('createdAt')
+        .onSnapshot((snapshot) => {
+          snapshot.docChanges().forEach((change) => {
+            const tweet = {
+              id: change.doc.id,
+              ...change.doc.data(),
+            };
+
+            if (change.type === 'added') {
+              this.tweets.unshift(tweet);
+            }
+          });
+        });
+    },
+
     addTweet(content) {
       const newTweet = {
         id: nanoid(),
@@ -46,6 +65,9 @@ export default {
     deleteTweet(id) {
       this.tweets = this.tweets.filter((tweet) => tweet.id !== id);
     },
+  },
+  mounted() {
+    this.handleTweets();
   },
   components: {
     TweetList: () => import('components/TweetList.vue'),
