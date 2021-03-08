@@ -20,6 +20,9 @@
 </template>
 
 <script>
+/* eslint-disable no-shadow */
+/* eslint-disable no-console */
+
 import database from 'boot/firebase';
 
 export default {
@@ -43,6 +46,10 @@ export default {
             if (change.type === 'added') {
               this.tweets.unshift(tweet);
             }
+
+            if (change.type === 'removed') {
+              this.tweets = this.tweets.filter((tweet) => tweet.id !== change.doc.id);
+            }
           });
         });
     },
@@ -58,12 +65,15 @@ export default {
       try {
         await database.collection('qweets').add(newTweet);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(error);
       }
     },
-    deleteTweet(id) {
-      this.tweets = this.tweets.filter((tweet) => tweet.id !== id);
+    async deleteTweet(id) {
+      try {
+        await database.collection('qweets').doc(id).delete();
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
   mounted() {
