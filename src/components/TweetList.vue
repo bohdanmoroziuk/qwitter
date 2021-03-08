@@ -9,6 +9,7 @@
         v-for="tweet of tweets"
         :key="tweet.id"
         :tweet="tweet"
+        @like="$emit('like-tweet', tweet)"
         @delete="$emit('delete-tweet', tweet.id)"
       />
     </transition-group>

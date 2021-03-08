@@ -13,6 +13,7 @@
 
       <tweet-list
         :tweets="tweets"
+        @like-tweet="likeTweet"
         @delete-tweet="deleteTweet"
       />
     </q-scroll-area>
@@ -22,6 +23,7 @@
 <script>
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
+/* eslint-disable arrow-body-style */
 
 import database from 'boot/firebase';
 
@@ -38,17 +40,25 @@ export default {
         .orderBy('createdAt')
         .onSnapshot((snapshot) => {
           snapshot.docChanges().forEach((change) => {
-            const tweet = {
-              id: change.doc.id,
-              ...change.doc.data(),
-            };
+            const { id } = change.doc;
+            const data = change.doc.data();
+
+            const tweet = { id, ...data };
 
             if (change.type === 'added') {
-              this.tweets.unshift(tweet);
+              this.tweets = [tweet, ...this.tweets];
             }
 
             if (change.type === 'removed') {
-              this.tweets = this.tweets.filter((tweet) => tweet.id !== change.doc.id);
+              this.tweets = this.tweets.filter((tweet) => tweet.id !== id);
+            }
+
+            if (change.type === 'modified') {
+              this.tweets = this.tweets.map((tweet) => {
+                return tweet.id === id
+                  ? { ...tweet, ...data }
+                  : tweet;
+              });
             }
           });
         });
@@ -57,6 +67,7 @@ export default {
     async addTweet(content) {
       const newTweet = {
         content,
+        liked: false,
         createdAt: Date.now(),
         fullname: 'Jordan Wild',
         nickname: '@jordan_wild',
@@ -71,6 +82,15 @@ export default {
     async deleteTweet(id) {
       try {
         await database.collection('qweets').doc(id).delete();
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async likeTweet(tweet) {
+      try {
+        await database.collection('qweets')
+          .doc(tweet.id)
+          .update({ liked: !tweet.liked });
       } catch (error) {
         console.error(error);
       }

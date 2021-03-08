@@ -40,11 +40,12 @@
         </div>
         <div class="col">
           <q-btn
-            color="grey"
-            icon="far fa-heart"
+            :color="tweet.liked ? 'pink' : 'grey'"
+            :icon="tweet.liked ? 'fas fa-heart' : 'far fa-heart'"
             size="sm"
             flat
             round
+            @click="$emit('like')"
           />
         </div>
         <div class="col">
