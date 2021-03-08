@@ -1,6 +1,6 @@
 <template>
   <q-page class="relative-position">
-    <q-scroll-area class="absolute fullscreen">
+    <q-scroll-area class="absolute full-width full-height">
       <div class="q-py-lg q-px-md">
         <new-tweet-form @submit="addTweet" />
       </div>
