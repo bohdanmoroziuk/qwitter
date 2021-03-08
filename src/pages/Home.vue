@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import { nanoid } from 'nanoid';
-
 import database from 'boot/firebase';
 
 export default {
@@ -49,18 +47,20 @@ export default {
         });
     },
 
-    addTweet(content) {
+    async addTweet(content) {
       const newTweet = {
-        id: nanoid(),
         content,
-        createdAt: new Date(),
-        author: {
-          fullname: 'Jordan Wild',
-          nickname: '@jordan_wild',
-        },
+        createdAt: Date.now(),
+        fullname: 'Jordan Wild',
+        nickname: '@jordan_wild',
       };
 
-      this.tweets = [newTweet, ...this.tweets];
+      try {
+        await database.collection('qweets').add(newTweet);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
     },
     deleteTweet(id) {
       this.tweets = this.tweets.filter((tweet) => tweet.id !== id);
