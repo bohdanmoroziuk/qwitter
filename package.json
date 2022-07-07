@@ -1,7 +1,7 @@
 {
   "name": "qwitter",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
+  "description": "A primitive Twitter clone built with Quasar",
   "productName": "Qwitter",
   "author": "Bogdan Morozyuk <bogdan7morozyuk@gmail.com>",
   "private": true,
